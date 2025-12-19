@@ -137,7 +137,6 @@ h1 {
 }
 </style>
 </head>
-<audio id="bgm" src="bgm.mp3" loop autoplay></audio>
 
 <body>
 <h1>张婉茹 · 考研必胜 💪</h1>
@@ -145,7 +144,7 @@ h1 {
 
 <button class="audio-btn" onclick="playBlessing()">▶ 播放我们的祝福</button>
 <audio id="blessing" src="blessing.mp3"></audio>
-<audio id="bgm" src="bgm.mp3" loop autoplay></audio>
+<audio id="bgm" src="bgm.mp3" loop hidden></audio>
 
 <div class="envelopes">
     <div class="envelope" onclick="openModal(1)">
@@ -219,6 +218,15 @@ function createFallingText() {
 }
 
 setInterval(createFallingText, 500);
+
+// 点击页面任意地方触发背景音乐播放（兼容移动端）
+document.addEventListener('click', function playBGM() {
+    const bgm = document.getElementById('bgm');
+    if(bgm){
+        bgm.play().catch(()=>{});
+    }
+    document.removeEventListener('click', playBGM);
+});
 </script>
 
 </body>
