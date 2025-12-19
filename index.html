@@ -2,195 +2,223 @@
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>💌</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>张婉茹 · 考研必胜</title>
 
 <style>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "PingFang SC", sans-serif;
-}
-
 body {
-  height: 100vh;
-  background: url("bg.jpg") center/cover no-repeat;
-  overflow: hidden;
-}
-
-/* 遮罩让文字更清楚 */
-.overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(255,255,255,0.65);
+    margin: 0;
+    font-family: "PingFang SC","Microsoft YaHei",sans-serif;
+    background: linear-gradient(135deg,#ffc1de,#ffd6e0);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-x: hidden;
 }
 
 /* 标题 */
 h1 {
-  text-align: center;
-  margin: 20px;
-  font-size: 26px;
-  color: #e63946;
+    margin: 32px 16px 10px;
+    text-align: center;
+    color: #e63946;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.25);
 }
 
-/* 信封区域 */
+.subtitle {
+    color: #e63946;
+    opacity: 0.9;
+    font-size: 16px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* 播放按钮 */
+.audio-btn {
+    margin: 10px 0 30px 0;
+    padding: 14px 28px;
+    border: none;
+    border-radius: 999px;
+    background: #ffffff;
+    color: #e63946;
+    font-size: 16px;
+    cursor: pointer;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+}
+
+/* 信封排版 */
 .envelopes {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 16px;
-  padding: 20px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    width: 90%;
+    max-width: 720px;
+    margin-bottom: 50px;
 }
 
 .envelope {
-  background: #fff;
-  border-radius: 16px;
-  padding: 20px;
-  text-align: center;
-  cursor: pointer;
-  position: relative;
-  transition: transform 0.4s;
+    background: #fff;
+    border-radius: 16px;
+    padding: 30px 10px;
+    text-align: center;
+    cursor: pointer;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .envelope:hover {
-  transform: scale(1.05);
+    transform: translateY(-6px);
 }
 
-.envelope::before {
-  content: "✉️";
-  font-size: 36px;
-  display: block;
+.envelope:active {
+    transform: scale(1.05);
+}
+
+.icon {
+    font-size: 36px;
 }
 
 .name {
-  margin-top: 10px;
-  font-weight: bold;
+    margin-top: 12px;
+    font-weight: bold;
+    color: #e63946;
 }
 
 /* 弹窗 */
-.popup {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.5);
-  display: none;
-  align-items: center;
-  justify-content: center;
+.modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.55);
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
 }
 
-.popup-content {
-  background: white;
-  padding: 24px;
-  border-radius: 20px;
-  width: 85%;
-  max-width: 400px;
-  animation: pop 0.4s ease;
+.modal.show {
+    display: flex;
+    animation: fadeIn 0.25s ease;
 }
 
-@keyframes pop {
-  from { transform: scale(0.8); opacity: 0; }
-  to { transform: scale(1); opacity: 1; }
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
 }
 
-/* 按钮 */
-.controls {
-  text-align: center;
-  margin-top: 10px;
+.modal-content {
+    background: #ffd6e0;
+    border-radius: 18px;
+    padding: 26px;
+    max-width: 520px;
+    width: 100%;
+    line-height: 1.75;
+    word-break: break-word;
+    animation: popIn 0.3s ease;
 }
 
-button {
-  padding: 10px 20px;
-  border: none;
-  border-radius: 20px;
-  background: #ff7a7a;
-  color: white;
-  font-size: 16px;
+@keyframes popIn {
+    from { transform: scale(0.9); }
+    to { transform: scale(1); }
+}
+
+.close {
+    text-align: right;
+    font-size: 14px;
+    color: #e63946;
+    cursor: pointer;
+}
+
+/* 手机端优化 */
+@media (max-width: 600px) {
+    .envelopes {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    h1 { font-size: 22px; }
 }
 </style>
 </head>
 
 <body>
-<div class="overlay">
-  <h1>张婉茹 · 考研必胜 💪</h1>
+<h1>张婉茹 · 考研必胜 💪</h1>
+<div class="subtitle">所有努力，都会在这一刻发光 ✨</div>
 
-  <div class="envelopes">
-    <div class="envelope" onclick="openMsg(0)">
-      <div class="name">思源</div>
-    </div>
-    <div class="envelope" onclick="openMsg(1)">
-      <div class="name">子诺</div>
-    </div>
-    <div class="envelope" onclick="openMsg(2)">
-      <div class="name">雄泓</div>
-    </div>
-    <div class="envelope" onclick="openMsg(3)">
-      <div class="name">林毅</div>
-    </div>
-  </div>
-
-  <div class="controls">
-    <button onclick="playBlessing()">播放我们的祝福 🎧</button>
-  </div>
-</div>
-
-<div class="popup" id="popup" onclick="closeMsg()">
-  <div class="popup-content" id="popupText"></div>
-</div>
-
-<audio id="bgm" src="bgm.mp3" loop></audio>
+<button class="audio-btn" onclick="playBlessing()">▶ 播放我们的祝福</button>
 <audio id="blessing" src="blessing.mp3"></audio>
+<audio id="bgm" src="bgm.mp3" loop autoplay></audio>
+
+<div class="envelopes">
+    <div class="envelope" onclick="openModal(1)">
+        <div class="icon">💌</div>
+        <div class="name">思源</div>
+    </div>
+    <div class="envelope" onclick="openModal(2)">
+        <div class="icon">💌</div>
+        <div class="name">子诺</div>
+    </div>
+    <div class="envelope" onclick="openModal(3)">
+        <div class="icon">💌</div>
+        <div class="name">雄泓</div>
+    </div>
+    <div class="envelope" onclick="openModal(4)">
+        <div class="icon">💌</div>
+        <div class="name">林毅</div>
+    </div>
+</div>
+
+<div class="modal" id="modal">
+    <div class="modal-content">
+        <div class="close" onclick="closeModal()">关闭 ✖</div>
+        <div id="modalText"></div>
+    </div>
+</div>
 
 <script>
-const msgs = [
-`婉茹，考试加油！！努力了这么久一定会有回报... ——思源`,
-`婉茹冲鸭！你刷过的题、熬过的夜... ——子诺`,
-`最后一步啦！我们知道，这一路你付出了多少... ——雄泓`,
-`相信自己！婉茹，能坚持到今天... ——林毅`
-];
+// 祝福文案
+const texts = {
+1: `婉茹，考试加油！！努力了这么久一定会有回报，放平心态轻松上阵，考的都会蒙的都对！期待你的好消息💋💋💋❤️❤️你是最棒的💋💋 ——思源`,
+2: `婉茹冲鸭！你刷过的题、熬过的夜早都给你攒足了底气~上考场放平心态不用慌张，把会的都写对，不会的都蒙对😽你永远是最棒的，我们等你凯旋🥳🫶🏻~ ——子诺`,
+3: `最后一步啦！我们知道，这一路你付出了多少汗水和坚持。请带着我们所有人的祝福，自信满满地走进考场吧。你不是一个人在战斗，我们在终点等你，庆祝你研途璀璨，成功上岸！🎉 ——雄泓`,
+4: `相信自己！婉茹，能坚持到今天，你就是你自己的英雄！过往每个细节的暗示，都是冥冥之中指引着你的方向，这次，你只需要相信自己，跟随着你的心，相信相信的力量！ ——林毅`
+};
 
-const bgm = document.getElementById("bgm");
-const blessing = document.getElementById("blessing");
-
-// 第一次点击页面播放BGM
-document.body.addEventListener("click", () => {
-  bgm.play();
-}, { once: true });
-
-function openMsg(i) {
-  document.getElementById("popupText").innerText = msgs[i];
-  document.getElementById("popup").style.display = "flex";
+function openModal(i){
+    document.getElementById("modalText").innerText = texts[i];
+    document.getElementById("modal").classList.add("show");
+}
+function closeModal(){
+    document.getElementById("modal").classList.remove("show");
+}
+function playBlessing(){
+    const audio = document.getElementById("blessing");
+    audio.currentTime = 0;
+    audio.play();
 }
 
-function closeMsg() {
-  document.getElementById("popup").style.display = "none";
+// 背景飘落文字
+function createFallingText() {
+    const span = document.createElement("span");
+    span.innerText = Math.random() > 0.5 ? "加油!" : "冲冲冲!";
+    span.style.position = "fixed";
+    span.style.left = Math.random() * 100 + "vw";
+    span.style.top = "-30px";
+    span.style.fontSize = 20 + Math.random()*10 + "px";
+    span.style.color = "red";
+    span.style.fontWeight = "bold";
+    span.style.textShadow = "1px 1px 2px white, -1px 1px 2px white, 1px -1px 2px white, -1px -1px 2px white";
+    document.body.appendChild(span);
+    let y = -30;
+    const fall = setInterval(()=>{
+        y += 2 + Math.random()*2;
+        span.style.top = y + "px";
+        if(y>window.innerHeight){
+            clearInterval(fall);
+            span.remove();
+        }
+    },20);
 }
 
-function playBlessing() {
-  bgm.volume = 0.2;
-  blessing.play();
-  blessing.onended = () => bgm.volume = 1;
-}
-
-// 飘落文字
-setInterval(() => {
-  const span = document.createElement("span");
-  span.innerText = Math.random() > 0.5 ? "加油！" : "冲冲冲！";
-  span.style.position = "fixed";
-  span.style.left = Math.random() * 100 + "vw";
-  span.style.top = "-20px";
-  span.style.fontSize = "20px";
-  span.style.opacity = 0.6;
-  document.body.appendChild(span);
-
-  let y = -20;
-  const fall = setInterval(() => {
-    y += 1;
-    span.style.top = y + "px";
-    if (y > window.innerHeight) {
-      clearInterval(fall);
-      span.remove();
-    }
-  }, 20);
-}, 500);
+setInterval(createFallingText, 500);
 </script>
+
 </body>
 </html>
