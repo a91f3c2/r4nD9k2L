@@ -1,0 +1,131 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>张婉茹 · 考研必胜</title>
+<style>
+    body {
+        margin: 0;
+        font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
+        background: linear-gradient(135deg, #ffdde1, #ee9ca7);
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        color: #333;
+    }
+    h1 {
+        margin-top: 40px;
+        color: #fff;
+        text-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+    .audio-btn {
+        margin: 20px;
+        padding: 12px 24px;
+        border: none;
+        border-radius: 30px;
+        background: #fff;
+        color: #e75480;
+        font-size: 16px;
+        cursor: pointer;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+    .envelopes {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+        gap: 20px;
+        width: 90%;
+        max-width: 800px;
+        margin-top: 30px;
+    }
+    .envelope {
+        background: #fff;
+        border-radius: 12px;
+        padding: 20px;
+        text-align: center;
+        cursor: pointer;
+        position: relative;
+        box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+        transition: transform 0.2s;
+    }
+    .envelope:hover {
+        transform: translateY(-6px);
+    }
+    .name {
+        font-weight: bold;
+        color: #e75480;
+        margin-top: 10px;
+    }
+    .modal {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(0,0,0,0.6);
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+    }
+    .modal-content {
+        background: #fff;
+        border-radius: 16px;
+        padding: 30px;
+        max-width: 500px;
+        width: 100%;
+        text-align: left;
+        line-height: 1.7;
+    }
+    .close {
+        text-align: right;
+        cursor: pointer;
+        font-size: 14px;
+        color: #888;
+    }
+</style>
+</head>
+<body>
+
+<h1>张婉茹 · 考研必胜 💪✨</h1>
+
+<button class="audio-btn" onclick="playAudio()">▶ 播放我们的祝福</button>
+<audio id="blessingAudio" src="blessing.mp3"></audio>
+
+<div class="envelopes">
+    <div class="envelope" onclick="openModal(1)">💌<div class="name">思源</div></div>
+    <div class="envelope" onclick="openModal(2)">💌<div class="name">子诺</div></div>
+    <div class="envelope" onclick="openModal(3)">💌<div class="name">雄泓</div></div>
+    <div class="envelope" onclick="openModal(4)">💌<div class="name">林毅</div></div>
+</div>
+
+<div class="modal" id="modal">
+    <div class="modal-content">
+        <div class="close" onclick="closeModal()">关闭 ✖</div>
+        <div id="modalText"></div>
+    </div>
+</div>
+
+<script>
+const texts = {
+1: "婉茹，考试加油！！努力了这么久一定会有回报，放平心态轻松上阵，考的都会蒙的都对！期待你的好消息 💋💋💋❤️❤️ 你是最棒的 💋💋 —— 思源",
+2: "婉茹冲鸭！你刷过的题、熬过的夜早都给你攒足了底气~上考场放平心态不用慌张，把会的都写对，不会的都蒙对😽你永远是最棒的，我们等你凯旋🥳🫶🏻~ —— 子诺",
+3: "最后一步啦！我们知道，这一路你付出了多少汗水和坚持。请带着我们所有人的祝福，自信满满地走进考场吧。你不是一个人在战斗，我们在终点等你，庆祝你研途璀璨，成功上岸！🎉 —— 雄泓",
+4: "相信自己！婉茹，能坚持到今天，你就是你自己的英雄！过往每个细节的暗示，都是冥冥之中指引着你的方向，这次，你只需要相信自己，跟随着你的心，相信相信的力量！ —— 林毅"
+};
+
+function openModal(i){
+    document.getElementById('modalText').innerText = texts[i];
+    document.getElementById('modal').style.display = 'flex';
+}
+function closeModal(){
+    document.getElementById('modal').style.display = 'none';
+}
+function playAudio(){
+    const audio = document.getElementById('blessingAudio');
+    audio.currentTime = 0;
+    audio.play();
+}
+</script>
+
+</body>
+</html>
